@@ -176,7 +176,7 @@ valueBox(value =paste(round(min(CarreraLuz22$timerun/60),1), "min"),
 valueBox(value =paste(round(10070/min(CarreraLuz22$timerun),2),"m/s"), # ud1$cierre, 
          caption = "Máxima velocidad", 
          icon = "fa-clock", 
-         color = "#0EB0C6")
+         color = "#EEB0C6")
 ```
 
 ### distancia {.value-box}
