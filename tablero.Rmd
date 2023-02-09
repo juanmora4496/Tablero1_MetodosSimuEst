@@ -125,6 +125,26 @@ knitr::include_graphics("carrera1.png")
 
 **Salida**: Hotel Intercontinental, calle 5, Carrera 6, carrera 4c, carrera1, carrera 4, calle de la escopeta, museo arqueológico la merced, bulevar del rio, puente Ortiz, av 2N, parque lineal rio Cali av2n, calle 25, parque lineal av1n, calle 13, carrera 1 calle 12, carrera 5, calle 10, gobernación del valle, edificio Aristi carrera 9, calle 9 plazoleta de san francisco, bulevar del rio, calle 8, carrera 4, carrera 3ª, parque del peñón, carrera 3, carrera 3ª oeste, calle 5 oeste, carrera 4, av Belalcázar, carrera 2ª oeste, librería nacional, carrera 1c, museo la tertulia, av Colombia, pepe ganga, carrera 3, carrera 2, carrera 3ª, av Colombia, carrera 4, meta hotel intercontinental. [juanchocorrelon.com](https://juanchocorrelon.com/intercontinental-10k-luz-2022/#10k)
 
+
+### Leaflet is a JavaScript library for creating dynamic maps that support panning and zooming along with various annotations.
+
+```{r}
+
+Name <- c("punto de partida", "calle ", "puente")
+Lon <- c(-76.539755, -76.539762, -76.532657)
+Lat <- c(3.450223, 3.451054, 3.453740)
+
+
+df <- data.frame(Name, Lat, Lon)
+
+library(leaflet)
+data(df)
+leaflet(data = df )%>% addTiles() %>%
+  addMarkers(~Lon, ~Lat, label = ~as.character(Name))
+```
+
+
+
 ## Column {data-width="400"}
 
 ### Tiempo mujeres categoría Abierta
@@ -149,14 +169,9 @@ leaflet() %>%
 ```
 
 
-### Leaflet is a JavaScript library for creating dynamic maps that support panning and zooming along with various annotations.
 
-```{r}
-library(leaflet)
-leaflet() %>%
-  addTiles() %>%
-  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
-```
+
+
 
 
 ## Column {data-width="50"}
