@@ -188,7 +188,7 @@ valueBox(value = paste(10.07,"Km"), #ud1$min,
 valueBox(value = paste(length(CarreraLuz22$timerun),"atletas"), 
          caption = "Número de participantes", 
          icon = "fa-people", 
-         color = "#0EB0C6")
+         color = "#0EB0d9")
 ```
 
 ### porcentaje {.value-box}
