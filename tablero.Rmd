@@ -141,17 +141,23 @@ col ="#ee964b")
 ```
 
 ### Tiempo hombres categoría Abierta
+```{r}
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+```
+
+
+### Leaflet is a JavaScript library for creating dynamic maps that support panning and zooming along with various annotations.
 
 ```{r}
-# seleccion de bases
-dataMc2=subset(CarreraLuz22, (CarreraLuz22$sex=="Hombre" & CarreraLuz22$categoria=="2. Abierta")) # dataset de mujeres
-x=dataMc2$timerun/60
-hist(x, xlim=c(30,120), ylim=c(0,250),las=1,
-main = " ",
-xlab="tiempo (min)",
-ylab = "frecuencia",
-col ="#ee964b")
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
 ```
+
 
 ## Column {data-width="50"}
 
