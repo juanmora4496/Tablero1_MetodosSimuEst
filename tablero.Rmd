@@ -5,8 +5,8 @@ output:
   flexdashboard::flex_dashboard:
     theme:
       bg: "#FFFFFF"
-      fg: "#034A94" 
-      primary: "#034A94" 
+      fg: "#447270" 
+      primary: "#366854" 
       base_font:
         google: Sen
       code_font:
@@ -81,9 +81,9 @@ knitr::include_graphics("Carreralogo.png")
 
 ```{r}
 valueBox(value =paste(round(min(CarreraLuz22F$timerun/60),1), "min"), 
-         caption = "Tiempo ganador", 
+         caption = "Tiempo de la Ganadora", 
          icon = "fa-thumbs-up", 
-         color = "#0EB0C6")
+         color = "#9fbeb2")
 ```
 
 
@@ -95,9 +95,9 @@ valueBox(value =paste(round(min(CarreraLuz22F$timerun/60),1), "min"),
 
 ```{r}
 valueBox(value =paste(round(10070/min(CarreraLuz22F$timerun),2),"m/s"), # ud1$cierre, 
-         caption = "Máxima velocidad", 
+         caption = "Máxima Velocidad de la Ganadora", 
          icon = "fa-clock", 
-         color = "#EEB0C6")
+         color = "#9fbeb2")
 ```
 
 ### Categoria del Ganador {.value-box}
@@ -109,9 +109,9 @@ winner_cat <- CarreraLuz22F[min_value_position, "categoria"]
 
 
 valueBox(value = paste(winner_cat), 
-         caption = "categoria del ganador", 
+         caption = "Categoria de la Ganadora", 
          icon = "fa-people", 
-         color = "#0EB0d9")
+         color = "#9fbeb2")
 
 
 ```
@@ -125,9 +125,9 @@ winner_origin <- CarreraLuz22F[min_value_position, "origen"]
 
 
 valueBox(value = paste(winner_origin), 
-         caption = "Origen del ganador", 
+         caption = "Origen de la Ganadora", 
          icon = "fa-people", 
-         color = "#0EB0d9")
+         color = "#9fbeb2")
 
 
 ```
@@ -136,16 +136,16 @@ valueBox(value = paste(winner_origin),
 
 ## Column {.tabset data-width="800"}
 
-### Tiempos de Carrera
+### Performance por Edad
 
 ```{r}
 paleta6=c("#447270", "#6B9493", "#F6E271", "#F6B916", "#F69312", "#BC6C25")
 p1=ggplot(CarreraLuz22F, aes(y=timerun/60, x=edad))+
-  geom_jitter(color="#034A94", size=1, alpha=0.9) +
+  geom_jitter(color="#447270", size=1, alpha=0.9) +
   aes(color=paleta6)+
-  labs(title = " Tiempo en finalizar la carrera según la edad de cada participante ",
-       y= "tiempo - min",
-       x= "edad")+ 
+  labs(title = "      Tiempo en finalizar la carrera según la edad de cada participante ",
+       y= "Tiempo (min)",
+       x= "Edad (Años)")+ 
   #facet_wrap(~ sex)
   #facet_grid(vars(sex), scale="free")+
   ylim(40,120)+
@@ -175,17 +175,17 @@ pct <- round(df_with_new_row$Freq/sum(df_with_new_row$Freq)*100)
 lbls <- paste(df_with_new_row$Var1, pct) # add percents to labels
 lbls <- paste(lbls,"%",sep="") # ad % to labels
 pie(df_with_new_row$Freq,labels = lbls, col=rainbow(length(lbls)),
-    main="Proporcion de los participantes de Cali vs participantes de otras partes")
+    main="Participantes de Cali vs Participantes de Otras Ciudades")
 
 ```
 
-### comparacion hombres vs mujeres
+### Hombres vs Mujeres
 
 ```{r, fig.height=3}
 ggplot(CarreraLuz22, aes(x = sex, y = timerun/60 )) +
   geom_boxplot(aes(fill = sex)) + 
   # facet_wrap(~sex, ncol=1, labeller = labeller(dose = etiquetas))+
-  labs(title = "", y= "tiempo - min", x= "sexo")+
+  labs(title = "Tiempo de Carrera Hombres vs Mujeres", y= "tiempo - min", x= "sexo")+
   scale_fill_brewer() +
   #scale_fill_manual(values = c("#00070D", "#012447", "#034A94", "#0570E1", "#3998FB","#37B6FC"))+
   theme(legend.position = "none")
@@ -195,11 +195,21 @@ ggplot(CarreraLuz22, aes(x = sex, y = timerun/60 )) +
 
 ```{r}
 
-Name <- c("punto de partida", "calle ", "puente")
-Lon <- c(-76.539755, -76.539762, -76.532657)
-Lat <- c(3.450223, 3.451054, 3.453740)
+Name <- c("a", "b", "c","d","e","f","g","h","i","j","k","l","m")
+Lon <- c(-76.539755, -76.532657, -76.531972 ,-76.526678,-76.530420,-76.532619,-76.533169,-76.537701,-76.543090,-76.547072,-76.542515,-76.541915,-76.539696)
+Lat <- c(3.450223, 3.453740,3.456752,3.459586,3.456514,3.452124,3.447852,3.449748,3.450174,3.450513,3.448944,3.449923,3.450294)
 
-
+#3.456752, -76.531972
+#3.459586, -76.526678
+#3.456514, -76.530420
+#3.452124, -76.532619
+#3.447852, -76.533169
+#3.449748, -76.537701
+#3.450174, -76.543090
+#3.450513, -76.547072
+#3.448944, -76.542515
+#3.449923, -76.541915
+#3.450294, -76.539696
 df <- data.frame(Name, Lat, Lon)
 
 library(leaflet)
@@ -209,16 +219,14 @@ leaflet(data = df )%>% addTiles() %>%
 ```
 
 
-### Más información
+### Cantidad de Participantes por Categoria
 
-```{r, echo=FALSE, out.width="30%", fig.align = "center"}
-knitr::include_graphics("carrera1.png")
+```{r}
+b=table(CarreraLuz22$categoria)
+df <- as.data.frame(b)
+column<-CarreraLuz22$categoria
+barplot(height=df$Freq, names.arg=df$Var1, main="Cantidad de participantes por categoria", ylab="Cantidad de participantes", col="#9fbeb2", border="black",las=2)
 ```
-
-**10.07 K** Participantes desde los 15 años en adelante.
-
-**Salida**: Hotel Intercontinental, calle 5, Carrera 6, carrera 4c, carrera1, carrera 4, calle de la escopeta, museo arqueológico la merced, bulevar del rio, puente Ortiz, av 2N, parque lineal rio Cali av2n, calle 25, parque lineal av1n, calle 13, carrera 1 calle 12, carrera 5, calle 10, gobernación del valle, edificio Aristi carrera 9, calle 9 plazoleta de san francisco, bulevar del rio, calle 8, carrera 4, carrera 3ª, parque del peñón, carrera 3, carrera 3ª oeste, calle 5 oeste, carrera 4, av Belalcázar, carrera 2ª oeste, librería nacional, carrera 1c, museo la tertulia, av Colombia, pepe ganga, carrera 3, carrera 2, carrera 3ª, av Colombia, carrera 4, meta hotel intercontinental. [juanchocorrelon.com](https://juanchocorrelon.com/intercontinental-10k-luz-2022/#10k)
-
 
 ## Column {data-width="400"}
 
@@ -231,9 +239,9 @@ knitr::include_graphics("Carreralogo.png")
 
 ```{r}
 valueBox(value =paste(round(min(CarreraLuz22M$timerun/60),1), "min"), 
-         caption = "Tiempo ganador", 
+         caption = "Tiempo del Ganador", 
          icon = "fa-thumbs-up", 
-         color = "#0EB0C6")
+         color = "#9fbeb2")
 ```
 
 
@@ -245,9 +253,9 @@ valueBox(value =paste(round(min(CarreraLuz22M$timerun/60),1), "min"),
 
 ```{r}
 valueBox(value =paste(round(10070/min(CarreraLuz22M$timerun),2),"m/s"), # ud1$cierre, 
-         caption = "Máxima velocidad", 
+         caption = "Máxima Velocidad del Ganador", 
          icon = "fa-clock", 
-         color = "#EEB0C6")
+         color = "#9fbeb2")
 ```
 
 ### distancia {.value-box}
@@ -259,9 +267,9 @@ winner_cat <- CarreraLuz22M[min_value_position, "categoria"]
 
 
 valueBox(value = paste(winner_cat), 
-         caption = "categoria del ganador", 
+         caption = "Categoria del Ganador", 
          icon = "fa-people", 
-         color = "#0EB0d9")
+         color = "#9fbeb2")
 
 
 ```
@@ -275,9 +283,9 @@ winner_origin <- CarreraLuz22M[min_value_position, "origen"]
 
 
 valueBox(value = paste(winner_origin), 
-         caption = "Origen del ganador", 
+         caption = "Origen del Ganador", 
          icon = "fa-people", 
-         color = "#0EB0d9")
+         color = "#9fbeb2")
 
 
 ```
