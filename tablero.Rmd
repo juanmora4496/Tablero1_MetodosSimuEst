@@ -228,6 +228,25 @@ column<-CarreraLuz22$categoria
 barplot(height=df$Freq, names.arg=df$Var1, main="Cantidad de participantes por categoria", ylab="Cantidad de participantes", col="#9fbeb2", border="black",las=2)
 ```
 
+
+### Analisis
+A continuación, se presentan algunos resultados del análisis exploratorio de datos basado en las graficas generadas según el conjunto de datos “CarreraLuz22”:
+
+La información se organizó por columnas donde la primera columna es un diagrama de dispersión entre el rendimiento de los participantes, el segundo es un diagrama de tortas que muestra la distribución de los participantes según su ciudad de origen, el tercero un diagrama de cajas que compara el tiempo requerido por hombres y  mujeres, un mapa del recorrido y por último un histograma de los participantes por categoría.  
+
+-En el diagrama de cajas, se observa un mejor rendimiento por parte de los hombres en la carrera. La media del tiempo de recorrido para los hombres es de aproximadamente 60 min, mientras que para las mujeres es de 70 minutos.
+
+-El recorrido se realizó en el oeste de la Ciudad de Cali, cerca de la zona del Peñón.
+La mayoría de los participantes (87%) son oriundos de la ciudad de Cali.
+
+-En el gráfico de dispersión que compara el tiempo necesario para terminar la carrera y la edad de los participantes, no se observa una relación clara entre la edad y el tiempo requerido para completar el recorrido. La variación en el tiempo puede ser debido a que los participantes pueden completar el recorrido caminando, trotando o corriendo.
+
+-La categoría con mayor cantidad de participantes fue la categoría Abierta con más de 1000 participantes, seguida por la categoría veterano A, veterano B, y veterano C.
+
+-La mujer más rápida fue un 18% más lenta que el hombre más rápido, después de organizar los datos por género y buscar al hombre y a la mujer con el mejor tiempo.
+
+
+
 ## Column {data-width="400"}
 
 ### GANADOR HOMBRES
